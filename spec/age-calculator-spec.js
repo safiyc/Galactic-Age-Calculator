@@ -27,4 +27,8 @@ describe('ageCalculator', function() {
   it('should expect mars years from inputted earth years', function() {
     expect(age.marsYears(4)).toEqual(7.52)
   });
+
+  it('should expect jupiter years from inputted earth years', function() {
+    expect(age.jupiterYears(4)).toEqual(47.44)
+  });
 });

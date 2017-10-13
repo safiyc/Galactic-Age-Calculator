@@ -35,4 +35,9 @@ export class ageCalculator {
     let marsAge = age * 1.88;
     return marsAge;
   }
+
+  jupiterYears(age) {
+    let jupiterAge = age * 11.86;
+    return jupiterAge;
+  }
 }
