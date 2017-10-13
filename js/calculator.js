@@ -47,11 +47,11 @@ export class ageCalculator {
     let result;
     if (that.mercuryYears(age) > 0) {
       result = expectancy - age;
-    } if (that.venusYears(age) > 0) {
+    } else if (that.venusYears(age) > 0) {
       result = expectancy - age;
-    } if (that.marsYears(age) > 0) {
+    } else if (that.marsYears(age) > 0) {
       result = expectancy - age;
-    } if (that.jupiterYears(age) > 0) {
+    } else if (that.jupiterYears(age) > 0) {
       result = expectancy - age;
     }
     return result;
