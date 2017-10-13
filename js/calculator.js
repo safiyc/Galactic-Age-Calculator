@@ -23,6 +23,11 @@ export class ageCalculator {
   // converts earth years to mercury years
   yearsInMercury(age) {
     let mercuryAge = age * .24;
-    return mercuryAge
+    return mercuryAge;
+  }
+
+  yearsInVenus(age) {
+    let venusAge = age * .62;
+    return venusAge;
   }
 }
