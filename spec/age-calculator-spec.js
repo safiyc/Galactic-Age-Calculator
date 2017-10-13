@@ -31,4 +31,10 @@ describe('ageCalculator', function() {
   it('should expect jupiter years from inputted earth years', function() {
     expect(age.jupiterYears(4)).toEqual(47.44)
   });
+
+  it('determines how many years left a person has after entering their age and the life expentency of their population', function() {
+    let venusAge = age.venusYears(5);
+    expect(age.yearsLeft(venusAge, 30)).toEqual(26.9)
+  });
+
 });

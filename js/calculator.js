@@ -40,4 +40,20 @@ export class ageCalculator {
     let jupiterAge = age * 11.86;
     return jupiterAge;
   }
+
+  // calculates years left to live, after age and life expectancy are given
+  yearsLeft(age, expectancy) {
+    let that = this;
+    let result;
+    if (that.mercuryYears(age) > 0) {
+      result = expectancy - age;
+    } if (that.venusYears(age) > 0) {
+      result = expectancy - age;
+    } if (that.marsYears(age) > 0) {
+      result = expectancy - age;
+    } if (that.jupiterYears(age) > 0) {
+      result = expectancy - age;
+    }
+    return result;
+  }
 }
