@@ -21,13 +21,18 @@ export class ageCalculator {
   }
 
   // converts earth years to mercury years
-  yearsInMercury(age) {
+  mercuryYears(age) {
     let mercuryAge = age * .24;
     return mercuryAge;
   }
 
-  yearsInVenus(age) {
+  venusYears(age) {
     let venusAge = age * .62;
     return venusAge;
+  }
+
+  marsYears(age) {
+    let marsAge = age * 1.88;
+    return marsAge;
   }
 }

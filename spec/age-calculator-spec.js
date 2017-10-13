@@ -17,10 +17,14 @@ describe('ageCalculator', function() {
   });
 
   it('should expect mercury years from inputted earth years', function() {
-    expect(age.yearsInMercury(5)).toEqual(1.2)
+    expect(age.mercuryYears(5)).toEqual(1.2)
   });
 
   it('should expect venus years from inputted earth years', function() {
-    expect(age.yearsInVenus(5)).toEqual(3.1)
+    expect(age.venusYears(5)).toEqual(3.1)
+  });
+
+  it('should expect mars years from inputted earth years', function() {
+    expect(age.marsYears(4)).toEqual(7.52)
   });
 });
