@@ -19,4 +19,10 @@ export class ageCalculator {
     seconds = secondDate - firstDate;
     return seconds;
   }
+
+  // converts earth years to mercury years
+  yearsInMercury(age) {
+    let mercuryAge = age * .24;
+    return mercuryAge
+  }
 }

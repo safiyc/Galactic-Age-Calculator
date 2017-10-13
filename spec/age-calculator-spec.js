@@ -15,4 +15,9 @@ describe('ageCalculator', function() {
     let date2 = new Date(2017, 9, 10);
     expect(age.datesIntoSeconds(date1, date2)).toEqual(86400)
   });
+
+  it('should expect mercury years from inputted earth years', function() {
+    expect(age.yearsInMercury(5)).toEqual(1.2)
+  });
+
 });
