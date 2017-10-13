@@ -2,7 +2,7 @@ export class ageCalculator {
   constructor(){
   }
 
-  yearsInSeconds(years) {
+  yearsIntoSeconds(years) {
     let seconds;
     const daysInYear = 365;
     const hoursInDay = 24;
@@ -12,5 +12,11 @@ export class ageCalculator {
     return seconds;
   }
 
-
+  datesIntoSeconds(date1, date2) {
+    let seconds;
+    let firstDate = date1.getTime() / 1000;
+    let secondDate = date2.getTime() / 1000;
+    seconds = secondDate - firstDate;
+    return seconds;
+  }
 }
