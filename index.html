@@ -10,21 +10,57 @@
   <body>
     <div class="container">
       <div class="page-header">
-        <h1>Age Calculator <br><small>Let's turn your age from earth year into 'x' planet year.</small></h1>
+        <h1 class="jumbotron text-center">Age Calculator</h1>
       </div>
       <br>
-      <div class="form">
-        <form id="userAge">
+      <div class="datesHide well">
+        <h4 class='text-center'>Let's do some conversions on your age</h4>
+        <br>
+        <form id="ageConvert">
           <div class="form-group">
-            <label for="age">Enter your age:</label>
-            <input type='text' class="form-control" id='age'>
+            <label for="birthdate">Enter your date of birth</label>
+            <input id="birthdate" class="form-control" type="date">
+            <label for="secondDate">Enter a second date:</label>
+            <input id="secondDate" class="form-control" type="date">
           </div>
           <button type="submit" class="btn btn-danger">Submit</button>
         </form>
       </div>
-      
-      <div class="ageResults hide">
 
+      <div class="conversionResults hide well">
+        <h4 class='text-center'>Conversion results</h4>
+        <br>
+        <div class="ageToSeconds"></div>
+        <div class="datesToSeconds"></div>
+        <div class="earthYears"></div>
+        <div class="mercuryYears"></div>
+        <div class="venusYears"></div>
+        <div class="marsYears"></div>
+        <div class="jupiterYears"></div>
+      </div>
+
+      <div class="expectancyHide hide well">
+        <h4 class='text-center'>Let's determine how many years you have left on Earth and other planets</h4>
+        <br>
+        <form id="expectancyConvert">
+          <div class="form-group">
+            <label for="smoker">Do you smoke?</label><br>
+            <input type="radio" name="smoker" value="yes">Yes<br>
+            <input type="radio" name="smoker" value="no">No<br>
+          </div>
+          <button type="submit" class="btn btn-danger">Submit</button>
+        </form>
+      </div>
+
+      <div class="expectancyResults hide well">
+        <h4 class="text-center">Life expectancy results</h4>
+        <br>
+        <div class="earthExpectancy"></div>
+        <div class="mercuryExpectancy"></div>
+        <div class="venusExpectancy"></div>
+        <div class="marsExpectancy"></div>
+        <div class="jupiterExpectancy"></div>
+        <div class="dead"></div>
       </div>
     </div>
   </body>
