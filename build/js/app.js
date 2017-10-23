@@ -44,6 +44,12 @@ var ageCalculator = exports.ageCalculator = function () {
       years = seconds / (365 * 24 * 60 * 60);
       return years;
     }
+  }, {
+    key: 'earthYears',
+    value: function earthYears(age) {
+      var earthAge = age;
+      return earthAge;
+    }
 
     // converts earth years to mercury years
 
@@ -71,6 +77,9 @@ var ageCalculator = exports.ageCalculator = function () {
       var jupiterAge = age * 11.86;
       return jupiterAge;
     }
+
+    // in earth years
+
   }, {
     key: 'lifeExpectancy',
     value: function lifeExpectancy(smoker) {
@@ -84,21 +93,18 @@ var ageCalculator = exports.ageCalculator = function () {
       return expectancy;
     }
 
-    // calculates years left to live, after age and life expectancy are given
+    // calculates earth years left to live, after age and life expectancy are given
 
   }, {
     key: 'yearsLeft',
-    value: function yearsLeft(age, expectancy) {
+    value: function yearsLeft(smoker, age) {
       var that = this;
       var result = void 0;
-      if (that.mercuryYears(age) > 0) {
-        result = expectancy - age;
-      } else if (that.venusYears(age) > 0) {
-        result = expectancy - age;
-      } else if (that.marsYears(age) > 0) {
-        result = expectancy - age;
-      } else if (that.jupiterYears(age) > 0) {
-        result = expectancy - age;
+
+      if (that.lifeExpectancy(smoker) - age > 0) {
+        result = that.lifeExpectancy(smoker) - age;
+      } else {
+        result = "You are living over your life expectancy. Are you sure you are not dead?";
       }
       return result;
     }
@@ -114,6 +120,21 @@ var _calculator = require('./../js/calculator.js');
 
 $(document).ready(function () {
   var age = new _calculator.ageCalculator();
+  $('#yearsConvert').submit(function (event) {
+    event.preventDefault();
+    var yearsOld = $('#yearsOld').val();
+    var secondsOld = age.yearsIntoSeconds(yearsOld);
+
+    if (yearsOld == '') {
+      $('.errorAgeDiv').text("Please enter only digits to see the conversion.");
+      return false;
+    }
+
+    $('.ageResults').removeClass('hide');
+    $('.datesHide').removeClass('hide');
+    $('.yearsToSeconds').text("Your age: " + secondsOld + " seconds");
+  });
+
   $('#ageConvert').submit(function (event) {
     event.preventDefault();
     var birthdate = $('#birthdate').val();
@@ -130,38 +151,65 @@ $(document).ready(function () {
 
     // to prevent blank input submits
     if (birthdate == '') {
-      alert('Please select your date of birth.');
+      $('.errorDateOne').text('Please select your date of birth.');
       return false;
+    } else {
+      $('.errorDateOne').addClass('hide');
     }if (secondDate == '') {
-      alert('Please select a second date.');
+      $('.errorDateTwo').text('Please select a second date.');
       return false;
+    } else {
+      $('.errorDateTwo').addClass('hide');
     }
 
     $('.conversionResults').removeClass('hide');
     $('.expectancyHide').removeClass('hide');
     // $('.datesHide').addClass('hide');
-    $('.ageToSeconds').text("Your age (from birthdate to the point the above was submitted): " + ageToSeconds + " seconds");
-    $('.datesToSeconds').text("Your age (between the 2 submitted dates): " + datesToSeconds + " seconds");
-    $('.earthYears').text('Your Earth age: ' + datesToYears + ' years');
-    $('.mercuryYears').text("Your Mercury age: " + mercuryYears + " years");
-    $('.venusYears').text("Your Venus age: " + venusYears + " years");
-    $('.marsYears').text("Your Mars age: " + marsYears + " years");
-    $('.jupiterYears').text("Your Jupiter age: " + jupiterYears + " years");
+    $('.datesToSeconds').text("Your age: " + datesToSeconds + " seconds");
+    $('.ageToSeconds').text("Your age: " + ageToSeconds + " seconds");
+    $('#earthYears').text('Your Earth age: ' + datesToYears + ' years');
+    $('#mercuryYears').text("Your Mercury age: " + mercuryYears + " years");
+    $('#venusYears').text("Your Venus age: " + venusYears + " years");
+    $('#marsYears').text("Your Mars age: " + marsYears + " years");
+    $('#jupiterYears').text("Your Jupiter age: " + jupiterYears + " years");
   });
 
   $('#expectancyConvert').submit(function (event) {
     event.preventDefault();
     var smoker = $("input[name='smoker']:checked").val();
     // let age = new ageCalculator();
-    var lifeExpectancy = age.lifeExpectancy(smoker);
+    var earthAge = parseFloat(document.getElementById("earthYears").innerText.slice(16, -6));
+    var earthLeft = age.yearsLeft(smoker, earthAge);
+    var mercuryLeft = parseFloat(age.mercuryYears(earthLeft));
+    var venusLeft = parseFloat(age.venusYears(earthLeft));
+    var marsLeft = parseFloat(age.marsYears(earthLeft));
+    var jupiterLeft = age.jupiterYears(earthLeft);
 
     if (smoker != 'yes' && smoker != 'no') {
-      alert('Please select "Yes" or "No" to get your life expectancy results.');
+      $('.errorSmoker').text('Please select "Yes" or "No" to get your life expectancy results.');
       return false;
+    } else {
+      $('.errorSmoker').addClass('hide');
     }
 
     $('.expectancyResults').removeClass('hide');
-    $('.earthExpectancy').text("Earth years: " + lifeExpectancy);
+
+    // if (earthLeft > 0) {
+    //   $('.youDead').text(earthLeft);
+    // $('.earthLeft').addClass('hide');
+    // $('.mercuryhLeft').addClass('hide');
+    // $('.venusLeft').addClass('hide');
+    // $('.marsLeft').addClass('hide');
+    // $('.jupiterLeft').addClass('hide');
+    // }
+    // else {
+    $('.youDead').text(earthLeft);
+    // $('.earthLeft').text("Earth years left: " + earthLeft);
+    $('.mercuryLeft').text("Mercury years left: " + mercuryLeft);
+    $('.venusLeft').text("Venus years left: " + venusLeft);
+    $('.marsLeft').text("Mars years left: " + marsLeft);
+    $('.jupiterLeft').text("Jupiter years left: " + jupiterLeft);
+    // }
   });
 });
 

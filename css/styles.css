@@ -5,3 +5,15 @@
 .text-center {
   text-align: center;
 }
+
+.ageResults {
+  background-color: rgb(229, 239, 255);
+}
+
+.conversionResults {
+  background-color: rgb(229, 239, 255);
+}
+
+.expectancyResults {
+  background-color: rgb(229, 239, 255);
+}

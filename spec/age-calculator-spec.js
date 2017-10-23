@@ -32,14 +32,22 @@ describe('ageCalculator', function() {
     expect(age.jupiterYears(4)).toEqual(47.44)
   });
 
-  // it('determines how many years left a person has after entering their age and the life expentancy of their population', function() {
-  //   let venusAge = age.venusYears(5);
-  //   expect(age.yearsLeft(venusAge, 30)).toEqual(26.9)
-  // });
+  it('determines how many years left a person has after entering their age and answering whether they smoke or not', function() {
+    let yesSmoker = 'yes';
+    let earthAge = age.earthYears(5);
+    expect(age.yearsLeft(yesSmoker, earthAge)).toEqual(45)
+  });
 
-  // it('accounts for when person lives pass their populations life expectancy', function() {
-  //   let mercuryAge = age.mercuryYears(5);
-  //   expect(age.yearsLeft(mercuryAge, 1)).toEqual("You should be dead already")
-  // });
+  it('returns message for age being over life expectancy', function() {
+    let noSmoker = 'no';
+    let earthAge = age.earthYears(80);
+    expect(age.yearsLeft(noSmoker, earthAge)).toEqual("You are living over your life expectancy. Are you sure you are not dead?")
+  });
 
+  it('determines how many mercury years left a person has', function() {
+    let noSmoker = 'no';
+    let earthAge = age.earthYears(5);
+    let earthLeft = age.yearsLeft(noSmoker, earthAge);
+    expect(age.mercuryYears(earthLeft)).toEqual(15.6)
+  });
 });

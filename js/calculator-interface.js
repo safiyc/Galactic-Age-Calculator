@@ -2,6 +2,21 @@ import { ageCalculator } from './../js/calculator.js';
 
 $(document).ready(function(){
   let age = new ageCalculator();
+  $('#yearsConvert').submit(function(event){
+    event.preventDefault();
+    let yearsOld = $('#yearsOld').val();
+    let secondsOld = age.yearsIntoSeconds(yearsOld);
+
+    if (yearsOld == '') {
+      $('.errorAgeDiv').text("Please enter only digits to see the conversion.");
+      return false;
+    }
+
+    $('.ageResults').removeClass('hide');
+    $('.datesHide').removeClass('hide');
+    $('.yearsToSeconds').text("Your age: " + secondsOld + " seconds");
+  });
+
   $('#ageConvert').submit(function(event){
     event.preventDefault();
     let birthdate = $('#birthdate').val();
@@ -18,37 +33,64 @@ $(document).ready(function(){
 
     // to prevent blank input submits
     if (birthdate == '') {
-      alert('Please select your date of birth.');
+      $('.errorDateOne').text('Please select your date of birth.');
       return false;
+    } else {
+      $('.errorDateOne').addClass('hide');
     } if (secondDate == '') {
-      alert('Please select a second date.');
+      $('.errorDateTwo').text('Please select a second date.');
       return false;
+    } else {
+      $('.errorDateTwo').addClass('hide');
     }
 
     $('.conversionResults').removeClass('hide');
     $('.expectancyHide').removeClass('hide');
     // $('.datesHide').addClass('hide');
-    $('.ageToSeconds').text("Your age (from birthdate to the point the above was submitted): " + ageToSeconds + " seconds");
-    $('.datesToSeconds').text("Your age (between the 2 submitted dates): " + datesToSeconds + " seconds");
-    $('.earthYears').text('Your Earth age: ' + datesToYears + ' years');
-    $('.mercuryYears').text("Your Mercury age: " + mercuryYears + " years");
-    $('.venusYears').text("Your Venus age: " + venusYears + " years");
-    $('.marsYears').text("Your Mars age: " + marsYears + " years");
-    $('.jupiterYears').text("Your Jupiter age: " + jupiterYears + " years");
+    $('.datesToSeconds').text("Your age: " + datesToSeconds + " seconds");
+    $('.ageToSeconds').text("Your age: " + ageToSeconds + " seconds");
+    $('#earthYears').text('Your Earth age: ' + datesToYears + ' years');
+    $('#mercuryYears').text("Your Mercury age: " + mercuryYears + " years");
+    $('#venusYears').text("Your Venus age: " + venusYears + " years");
+    $('#marsYears').text("Your Mars age: " + marsYears + " years");
+    $('#jupiterYears').text("Your Jupiter age: " + jupiterYears + " years");
   });
 
   $('#expectancyConvert').submit(function(event){
     event.preventDefault();
     let smoker = $("input[name='smoker']:checked").val();
     // let age = new ageCalculator();
-    let lifeExpectancy = age.lifeExpectancy(smoker);
+    let earthAge = parseFloat(document.getElementById("earthYears").innerText.slice(16, -6));
+    let earthLeft = age.yearsLeft(smoker, earthAge);
+    let mercuryLeft = age.mercuryYears(earthLeft);
+    let venusLeft = age.venusYears(earthLeft);
+    let marsLeft = age.marsYears(earthLeft);
+    let jupiterLeft = age.jupiterYears(earthLeft);
 
     if ((smoker != 'yes') && (smoker != 'no')) {
-      alert('Please select "Yes" or "No" to get your life expectancy results.');
+      $('.errorSmoker').text('Please select "Yes" or "No" to get your life expectancy results.');
       return false;
+    } else {
+      $('.errorSmoker').addClass('hide');
     }
 
     $('.expectancyResults').removeClass('hide');
-    $('.earthExpectancy').text("Earth years: " + lifeExpectancy);
+
+    if (earthLeft > age.lifeExpectancy(smoker)) {
+      $('.youDead').text(earthLeft);
+      // $('.earthLeft').addClass('hide');
+      // $('.mercuryhLeft').addClass('hide');
+      // $('.venusLeft').addClass('hide');
+      // $('.marsLeft').addClass('hide');
+      // $('.jupiterLeft').addClass('hide');
+    }
+    // else {
+      // $('.youDead').text(earthLeft);
+      $('.earthLeft').text("Earth years left: " + earthLeft);
+      $('.mercuryLeft').text("Mercury years left: " + mercuryLeft);
+      $('.venusLeft').text("Venus years left: " + venusLeft);
+      $('.marsLeft').text("Mars years left: " + marsLeft);
+      $('.jupiterLeft').text("Jupiter years left: " + jupiterLeft);
+    // }
   });
 });

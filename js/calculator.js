@@ -29,6 +29,11 @@ export class ageCalculator {
     return years;
   }
 
+  earthYears(age) {
+      let earthAge = age;
+      return earthAge;
+  }
+
   // converts earth years to mercury years
   mercuryYears(age) {
     let mercuryAge = age * 0.24;
@@ -50,6 +55,7 @@ export class ageCalculator {
     return jupiterAge;
   }
 
+// in earth years
   lifeExpectancy(smoker) {
     let expectancy;
 
@@ -61,18 +67,15 @@ export class ageCalculator {
     return expectancy;
   }
 
-  // calculates years left to live, after age and life expectancy are given
-  yearsLeft(age, expectancy) {
+  // calculates earth years left to live, after age and life expectancy are given
+  yearsLeft(smoker, age) {
     let that = this;
     let result;
-    if (that.mercuryYears(age) > 0) {
-      result = expectancy - age;
-    } else if (that.venusYears(age) > 0) {
-      result = expectancy - age;
-    } else if (that.marsYears(age) > 0) {
-      result = expectancy - age;
-    } else if (that.jupiterYears(age) > 0) {
-      result = expectancy - age;
+
+    if (that.lifeExpectancy(smoker) - age > 0) {
+      result = that.lifeExpectancy(smoker) - age;
+    } else {
+      result = "You are living over your life expectancy. Are you sure you are not dead?";
     }
     return result;
   }

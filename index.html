@@ -13,30 +13,54 @@
         <h1 class="jumbotron text-center">Age Calculator</h1>
       </div>
       <br>
-      <div class="datesHide well">
-        <h4 class='text-center'>Let's do some conversions on your age</h4>
+      <div class="ageDiv well">
+        <h4 class="text-center">Let's turn your age in years into age in seconds</h4>
+        <br>
+        <form id="yearsConvert">
+          <div class="form-group">
+            <label for="yearsOld">Enter your age:</label>
+            <input id="yearsOld" class="form-control" type="number">
+          </div>
+          <button type="submit" class="btn btn-danger">Submit</button>
+        </form>
+        <div class="errorAgeDiv"></div>
+      </div>
+
+      <div class="ageResults hide well">
+        <h4 class="text-center">Your age in seconds</h4>
+        <br>
+        <div class="yearsToSeconds"></div>
+      </div>
+
+      <div class="datesHide hide well">
+        <h4 class='text-center'>Let's do some more conversions on your age</h4>
         <br>
         <form id="ageConvert">
           <div class="form-group">
-            <label for="birthdate">Enter your date of birth</label>
+            <label for="birthdate">Enter your date of birth:</label>
             <input id="birthdate" class="form-control" type="date">
             <label for="secondDate">Enter a second date:</label>
             <input id="secondDate" class="form-control" type="date">
           </div>
           <button type="submit" class="btn btn-danger">Submit</button>
         </form>
+        <div class="errorDateOne"></div>
+        <div class="errorDateTwo"></div>
       </div>
 
       <div class="conversionResults hide well">
         <h4 class='text-center'>Conversion results</h4>
         <br>
-        <div class="ageToSeconds"></div>
+        <p>The below calculation is based on the 2 submitted dates:</p>
         <div class="datesToSeconds"></div>
-        <div class="earthYears"></div>
-        <div class="mercuryYears"></div>
-        <div class="venusYears"></div>
-        <div class="marsYears"></div>
-        <div class="jupiterYears"></div>
+        <p></p>
+        <p>The below calculations are based on your birthdate and the moment you submitted the 2 dates:</p>
+        <div id="ageToSeconds"></div>
+        <div id="earthYears"></div>
+        <div id="mercuryYears"></div>
+        <div id="venusYears"></div>
+        <div id="marsYears"></div>
+        <div id="jupiterYears"></div>
       </div>
 
       <div class="expectancyHide hide well">
@@ -50,17 +74,19 @@
           </div>
           <button type="submit" class="btn btn-danger">Submit</button>
         </form>
+        <div class="errorSmoker"></div>
       </div>
 
       <div class="expectancyResults hide well">
         <h4 class="text-center">Life expectancy results</h4>
         <br>
-        <div class="earthExpectancy"></div>
-        <div class="mercuryExpectancy"></div>
-        <div class="venusExpectancy"></div>
-        <div class="marsExpectancy"></div>
-        <div class="jupiterExpectancy"></div>
-        <div class="dead"></div>
+        <p>The below calculations are based on your birthdate and the moment you submitted the 2 dates:</p>
+        <div class="youdead"></div>
+        <div class="earthLeft"></div>
+        <div class="mercuryLeft"></div>
+        <div class="venusLeft"></div>
+        <div class="marsLeft"></div>
+        <div class="jupiterLeft"></div>
       </div>
     </div>
   </body>
