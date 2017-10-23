@@ -6,7 +6,7 @@
 
 ## Description
 
-This program lets user converts earth years to x planet years, and user can calculate life expectancy.
+This program lets user converts earth years to X planet years, and user can calculate life expectancy.
 
 ## Setup
 
@@ -26,7 +26,7 @@ Click here (https://github.com/safiyc/Galactic-Age-Calculator.git) to access the
 
 * user can return the date of their next birthday on each planet
 * fun facts about x planet is displayed when converting years
-* user can convert dog years and cat years to x planet years
+* user can convert dog years and cat years to X planet years
 
 
 ## License

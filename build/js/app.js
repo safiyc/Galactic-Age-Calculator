@@ -179,11 +179,12 @@ $(document).ready(function () {
     var smoker = $("input[name='smoker']:checked").val();
     // let age = new ageCalculator();
     var earthAge = parseFloat(document.getElementById("earthYears").innerText.slice(16, -6));
-    var earthLeft = age.yearsLeft(smoker, earthAge);
-    var mercuryLeft = parseFloat(age.mercuryYears(earthLeft));
-    var venusLeft = parseFloat(age.venusYears(earthLeft));
-    var marsLeft = parseFloat(age.marsYears(earthLeft));
-    var jupiterLeft = age.jupiterYears(earthLeft);
+    var yearsLeft = age.yearsLeft(smoker, earthAge);
+    var earthLeft = age.earthYears(yearsLeft);
+    var mercuryLeft = age.mercuryYears(yearsLeft);
+    var venusLeft = age.venusYears(yearsLeft);
+    var marsLeft = age.marsYears(yearsLeft);
+    var jupiterLeft = age.jupiterYears(yearsLeft);
 
     if (smoker != 'yes' && smoker != 'no') {
       $('.errorSmoker').text('Please select "Yes" or "No" to get your life expectancy results.');
@@ -194,22 +195,20 @@ $(document).ready(function () {
 
     $('.expectancyResults').removeClass('hide');
 
-    // if (earthLeft > 0) {
-    //   $('.youDead').text(earthLeft);
-    // $('.earthLeft').addClass('hide');
-    // $('.mercuryhLeft').addClass('hide');
-    // $('.venusLeft').addClass('hide');
-    // $('.marsLeft').addClass('hide');
-    // $('.jupiterLeft').addClass('hide');
-    // }
-    // else {
-    $('.youDead').text(earthLeft);
-    // $('.earthLeft').text("Earth years left: " + earthLeft);
+    if (yearsLeft === "You are living over your life expectancy. Are you sure you are not dead?") {
+      $('.youLive').addClass('hide');
+    }
+
+    if (yearsLeft > 0) {
+      $('.youDead').addClass('hide');
+    }
+
+    $('.youDead').text(yearsLeft);
+    $('.earthLefta').text("Earth years left: " + earthLeft);
     $('.mercuryLeft').text("Mercury years left: " + mercuryLeft);
     $('.venusLeft').text("Venus years left: " + venusLeft);
     $('.marsLeft').text("Mars years left: " + marsLeft);
     $('.jupiterLeft').text("Jupiter years left: " + jupiterLeft);
-    // }
   });
 });
 

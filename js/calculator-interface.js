@@ -61,11 +61,12 @@ $(document).ready(function(){
     let smoker = $("input[name='smoker']:checked").val();
     // let age = new ageCalculator();
     let earthAge = parseFloat(document.getElementById("earthYears").innerText.slice(16, -6));
-    let earthLeft = age.yearsLeft(smoker, earthAge);
-    let mercuryLeft = age.mercuryYears(earthLeft);
-    let venusLeft = age.venusYears(earthLeft);
-    let marsLeft = age.marsYears(earthLeft);
-    let jupiterLeft = age.jupiterYears(earthLeft);
+    let yearsLeft = age.yearsLeft(smoker, earthAge);
+    let earthLeft = age.earthYears(yearsLeft);
+    let mercuryLeft = age.mercuryYears(yearsLeft);
+    let venusLeft = age.venusYears(yearsLeft);
+    let marsLeft = age.marsYears(yearsLeft);
+    let jupiterLeft = age.jupiterYears(yearsLeft);
 
     if ((smoker != 'yes') && (smoker != 'no')) {
       $('.errorSmoker').text('Please select "Yes" or "No" to get your life expectancy results.');
@@ -76,21 +77,19 @@ $(document).ready(function(){
 
     $('.expectancyResults').removeClass('hide');
 
-    if (earthLeft > age.lifeExpectancy(smoker)) {
-      $('.youDead').text(earthLeft);
-      // $('.earthLeft').addClass('hide');
-      // $('.mercuryhLeft').addClass('hide');
-      // $('.venusLeft').addClass('hide');
-      // $('.marsLeft').addClass('hide');
-      // $('.jupiterLeft').addClass('hide');
+    if (yearsLeft === "You are living over your life expectancy. Are you sure you are not dead?") {
+      $('.youLive').addClass('hide');
     }
-    // else {
-      // $('.youDead').text(earthLeft);
-      $('.earthLeft').text("Earth years left: " + earthLeft);
-      $('.mercuryLeft').text("Mercury years left: " + mercuryLeft);
-      $('.venusLeft').text("Venus years left: " + venusLeft);
-      $('.marsLeft').text("Mars years left: " + marsLeft);
-      $('.jupiterLeft').text("Jupiter years left: " + jupiterLeft);
-    // }
+
+    if (yearsLeft > 0) {
+      $('.youDead').addClass('hide');
+    }
+
+    $('.youDead').text(yearsLeft);
+    $('.earthLefta').text("Earth years left: " + earthLeft);
+    $('.mercuryLeft').text("Mercury years left: " + mercuryLeft);
+    $('.venusLeft').text("Venus years left: " + venusLeft);
+    $('.marsLeft').text("Mars years left: " + marsLeft);
+    $('.jupiterLeft').text("Jupiter years left: " + jupiterLeft);
   });
 });
